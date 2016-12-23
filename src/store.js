@@ -43,7 +43,7 @@ class DidVisitStore {
 
     retrieve = () => {
         AsyncStorage.getItem(VISIT_DATA).then(data => {
-            let visits = JSON.parse(data || []);
+            let visits = JSON.parse(data || "[]");
             visits = visits.map(params => new Visit(params));
             this.visits.replace(visits);
         });
