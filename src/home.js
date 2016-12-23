@@ -37,6 +37,9 @@ class Home extends Component {
         this.visitListener = GeofenceEvents.addListener("DidVisit", (data) => {
             console.log(data);
             alert(JSON.stringify(data));
+            data["id"] = generate();
+            data["name"] = "visit";
+            Store.add(new Visit(data));
         });
     }
 
