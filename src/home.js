@@ -9,13 +9,14 @@ import {
     ScrollView,
     Dimensions,
 } from 'react-native';
-import MapView from 'react-native-maps';
+
 import { observer } from 'mobx-react/native';
 import { generate } from 'shortid';
 
 import Visit from './visit';
 import Store from './store';
 import VisitList from './visitList';
+import VisitMap from './visitMap';
 
 const GeofenceEvents = new NativeEventEmitter(NativeModules.Geofence);
 const Geofence = {
@@ -27,6 +28,7 @@ const geolocationParams = {
     timeout: 20000,
     maximumAge: 1000
 };
+const Vancouver = { latitude: 49.2827, longitude: -123.1207};
 
 const screen = Dimensions.get("window");
 const styles = StyleSheet.create({
@@ -37,6 +39,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
     },
+    visitList: {
+        flex: 1,
+        marginTop: 10,
+    },
+    visitMap: {
+        flex: 2,
+    },
 });
 
 const Home = observer(
@@ -45,7 +54,7 @@ class Home extends Component {
         super(props);
         this.state = {
             initialPosition: null,
-            currentPosition: { latitude: 49.2827, longitude: -123.1207}
+            currentPosition: Vancouver
         };
         this.watchID = null;
     }
@@ -86,19 +95,25 @@ class Home extends Component {
                 <TouchableHighlight onPress={this.addVisit}>
                     <View><Text>Add visit</Text></View>
                 </TouchableHighlight>
-                <VisitList style={{flex: 1}} visits={Store.visits} onListItemPress={this.removeVisit} />
-                <MapView style={{flex: 3, width: screen.width}} initialRegion={{
-                    latitude: currentPosition.latitude,
-                    longitude: currentPosition.longitude,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                }}/>
+                <View style={styles.visitList}>
+                    <VisitList visits={Store.visits} onListItemPress={this.removeVisit} />
+                </View>
+                <View style={styles.visitMap}>
+                    <VisitMap position={currentPosition} visits={Store.visits}/>
+                </View>
             </View>
         );
     }
 
     addVisit = () => {
-        Store.add(new Visit({id: generate(), name: "testing" }));
+        Store.add(new Visit({
+            id: generate(),
+            name: "testing",
+            latlng: {
+                latitude: Vancouver.latitude + Math.random(),
+                longitude: Vancouver.longitude + Math.random()
+            }
+        }));
     }
 
     removeVisit = (visit) => {

@@ -8,11 +8,14 @@ import Moment from 'moment';
 
 export default class Visit {
     constructor(params = {}) {
+        let {
+            latitude = 0,
+            longitude = 0,
+        } = params.latlng;
         extendObservable(this, {
             id: params.id || "",
             name: params.name || "",
-            latitude: params.latitude || 0,
-            longitude: params.longitude || 0,
+            latlng: { latitude: Number(latitude), longitude: Number(longitude) },
             arrivalDate: params.arrivalDate ? Moment(params.arrivalDate) : null,
             departureDate: params.departureDate ? Moment(params.departureDate) : null,
             duration: computed(() => {
@@ -30,8 +33,10 @@ export default class Visit {
     update(params = {}) {
         this.id = params.id;
         this.name = params.name;
-        this.latitude = params.latitude;
-        this.longitude = params.longitude;
+        this.latlng = {
+            latitude: params.latitude,
+            longitude: params.longitude
+        };
         this.arrivalDate = params.arrivalDate;
         this.departureDate = params.departureDate;
         this.horizontalAccuracy = params.horizontalAccuracy;

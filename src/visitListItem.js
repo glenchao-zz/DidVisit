@@ -7,6 +7,7 @@ import {
     Dimensions,
     TouchableHighlight
 } from 'react-native';
+import { toJS } from 'mobx';
 import { observer } from 'mobx-react/native';
 
 const screen = Dimensions.get("window");
@@ -23,7 +24,10 @@ class VisitListItem extends Component {
         let visit = this.props.visit || {};
         return (
             <TouchableHighlight key={visit.id} onPress={this.onPress}>
-                <View><Text>{visit.id} - {visit.name}</Text></View>
+                <View>
+                    <Text>{visit.id} - {visit.name}</Text>
+                    <Text>{visit.latlng.latitude}, {visit.latlng.longitude}</Text>
+                </View>
             </TouchableHighlight>
         );
     }
