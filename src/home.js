@@ -13,6 +13,7 @@ import { generate } from 'shortid';
 
 import Visit from './visit';
 import Store from './store';
+import VisitList from './visitList';
 
 const GeofenceEvents = new NativeEventEmitter(NativeModules.Geofence);
 const Geofence = {
@@ -46,23 +47,10 @@ class Home extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>
-                    Hello world!
-                </Text>
                 <TouchableHighlight onPress={this.addVisit}>
                     <View><Text>Add visit</Text></View>
                 </TouchableHighlight>
-                <ScrollView>
-                {
-                    Store.visits.map(visit => {
-                        return (
-                            <TouchableHighlight key={visit.id} onPress={() => this.removeVisit(visit.id)}>
-                                <View><Text>{visit.id} - {visit.name}</Text></View>
-                            </TouchableHighlight>
-                        );
-                    })
-                }
-                </ScrollView>
+                <VisitList visits={Store.visits} onListItemPress={this.removeVisit} />
             </View>
         );
     }
@@ -71,8 +59,8 @@ class Home extends Component {
         Store.add(new Visit({id: generate(), name: "testing" }));
     }
 
-    removeVisit = (id) => {
-        Store.remove(id);
+    removeVisit = (visit) => {
+        Store.remove(visit.id);
     }
 });
 
