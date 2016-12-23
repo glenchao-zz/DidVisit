@@ -64,6 +64,7 @@ class Home extends Component {
             alert(JSON.stringify(data));
             data["id"] = generate();
             data["name"] = "visit";
+            data["latlng"] = { latitude: data.latitude, longitude: data.longitude };
             Store.add(new Visit(data));
         });
 
@@ -110,8 +111,8 @@ class Home extends Component {
             id: generate(),
             name: "testing",
             latlng: {
-                latitude: Vancouver.latitude + Math.random(),
-                longitude: Vancouver.longitude + Math.random()
+                latitude: Vancouver.latitude + (Math.random() / 200),
+                longitude: Vancouver.longitude + (Math.random() / 200)
             }
         }));
     }
