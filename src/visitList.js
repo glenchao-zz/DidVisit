@@ -27,7 +27,10 @@ class VisitList extends Component {
             <ScrollView style={styles.container}>
             {
                 visits.map(visit =>
-                    <VisitListItem key={visit.id} visit={visit} onListItemPress={this.props.onListItemPress} />)
+                    <VisitListItem key={visit.id}
+                                visit={visit}
+                                onListItemPressed={this.props.onListItemPressed}
+                                onListItemRemove={this.props.onListItemRemove} />)
             }
             </ScrollView>
         );

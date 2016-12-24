@@ -34,15 +34,17 @@ class VisitListItem extends Component {
         let visit = this.props.visit || {};
         return (
             <View key={visit.id} style={styles.container}>
+                <TouchableOpacity onPress={this.onPress}>
+                    <View>
+                        <Text style={styles.title}>{visit.id} - {visit.name}</Text>
+                        <Text>{visit.latlng.latitude}, {visit.latlng.longitude}</Text>
+                        {this.renderArrivalDeparture("Arrival", visit.arrivalDate)}
+                        {this.renderArrivalDeparture("Departure", visit.departureDate)}
+                        {this.renderDuration(visit)}
+                    </View>
+                </TouchableOpacity>
                 <View>
-                    <Text style={styles.title}>{visit.id} - {visit.name}</Text>
-                    <Text>{visit.latlng.latitude}, {visit.latlng.longitude}</Text>
-                    {this.renderArrivalDeparture("Arrival", visit.arrivalDate)}
-                    {this.renderArrivalDeparture("Departure", visit.departureDate)}
-                    {this.renderDuration(visit)}
-                </View>
-                <View onPress={this.onPress}>
-                    <TouchableOpacity onPress={this.onPress}>
+                    <TouchableOpacity onPress={this.onRemove}>
                         <View><Text>Remove</Text></View>
                     </TouchableOpacity>
                 </View>
@@ -60,8 +62,14 @@ class VisitListItem extends Component {
     }
 
     onPress = () => {
-        if (this.props.onListItemPress) {
-            this.props.onListItemPress(this.props.visit);
+        if (this.props.onListItemPressed) {
+            this.props.onListItemPressed(this.props.visit);
+        }
+    }
+
+    onRemove = () => {
+        if (this.props.onListItemRemove) {
+            this.props.onListItemRemove(this.props.visit);
         }
     }
 });

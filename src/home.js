@@ -97,7 +97,9 @@ class Home extends Component {
                     <View><Text>Add fake visit</Text></View>
                 </TouchableHighlight>
                 <View style={styles.visitList}>
-                    <VisitList visits={Store.visits} onListItemPress={this.removeVisit} />
+                    <VisitList visits={Store.visits}
+                            onListItemPressed={this.inspectVisit}
+                            onListItemRemove={this.removeVisit} />
                 </View>
                 <View style={styles.visitMap}>
                     <VisitMap position={currentPosition} visits={Store.visits}/>
@@ -115,6 +117,10 @@ class Home extends Component {
                 longitude: Vancouver.longitude + (Math.random() / 200)
             }
         }));
+    }
+
+    inspectVisit = (visit) => {
+        alert(JSON.stringify(visit));
     }
 
     removeVisit = (visit) => {

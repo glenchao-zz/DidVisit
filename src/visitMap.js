@@ -30,12 +30,14 @@ class VisitMap extends Component {
         return (
             <MapView ref="map"
                     style={styles.map}
+                    showsUserLocation={true}
                     showsMyLocationButton={true}>
             {visits.map(visit => {
                 return <MapView.Marker key={visit.id}
+                                identifier={visit.id}
                                 coordinate={visit.latlng}
                                 title={visit.name}
-                                description={visit.id} />
+                                description={`${visit.id} ${visit.name}`} />
             })}
             </MapView>
         );
