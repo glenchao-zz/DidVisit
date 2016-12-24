@@ -93,8 +93,8 @@ class Home extends Component {
                     <Text>{initPosText}</Text>
                     <Text>{currPosText}</Text>
                 </View>
-                <TouchableHighlight onPress={this.addVisit}>
-                    <View><Text>Add visit</Text></View>
+                <TouchableHighlight style={{marginTop: 10, padding: 7, backgroundColor: "lightblue"}} onPress={this.addVisit}>
+                    <View><Text>Add fake visit</Text></View>
                 </TouchableHighlight>
                 <View style={styles.visitList}>
                     <VisitList visits={Store.visits} onListItemPress={this.removeVisit} />

@@ -12,15 +12,20 @@ export default class Visit {
             latitude = 0,
             longitude = 0,
         } = params.latlng;
+        latitude = formatCoordinate(latitude);
+        longitude = formatCoordinate(longitude);
+
         extendObservable(this, {
             id: params.id || "",
             name: params.name || "",
-            latlng: { latitude: Number(latitude), longitude: Number(longitude) },
+            latlng: { latitude: latitude, longitude: longitude },
             arrivalDate: params.arrivalDate ? Moment(params.arrivalDate) : null,
             departureDate: params.departureDate ? Moment(params.departureDate) : null,
             duration: computed(() => {
                 if (this.arrivalDate && this.departureDate) {
-                    return Moment.diff(this.departureDate, this.arrivalDate);
+                    return this.departureDate.diff(this.arrivalDate);
+                } else {
+                    return 0;
                 }
             }),
             horizontalAccuracy: params.horizontalAccuracy || 0,
@@ -31,11 +36,16 @@ export default class Visit {
     }
 
     update(params = {}) {
+        let {
+            latitude = 0,
+            longitude = 0,
+        } = params.latlng;
+
         this.id = params.id;
         this.name = params.name;
         this.latlng = {
-            latitude: params.latitude,
-            longitude: params.longitude
+            latitude: formatCoordinate(latitude),
+            longitude: formatCoordinate(longitude)
         };
         this.arrivalDate = params.arrivalDate;
         this.departureDate = params.departureDate;
@@ -45,4 +55,8 @@ export default class Visit {
     value() {
         return toJS(this);
     }
+}
+
+function formatCoordinate(coord) {
+    return Number(Number(coord).toFixed(5));
 }
