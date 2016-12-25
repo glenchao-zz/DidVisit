@@ -45,6 +45,12 @@ const styles = StyleSheet.create({
 
 const Home = observer(
 class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            focusLatlng: null
+        }
+    }
     componentDidMount() {
         this.visitListener = GeofenceEvents.addListener("DidVisit", (data) => {
             data["id"] = generate();
@@ -62,7 +68,7 @@ class Home extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.visitMap}>
-                    <VisitMap visits={Store.visits}/>
+                    <VisitMap visits={Store.visits} focusLatlng={this.state.focusLatlng} />
                 </View>
                 <View style={styles.visitList}>
                     <VisitList visits={Store.visits}
@@ -74,7 +80,8 @@ class Home extends Component {
     }
 
     inspectVisit = (visit) => {
-        alert(JSON.stringify(visit));
+        this.setState({ focusLatlng: visit.latlng });
+        // alert(JSON.stringify(visit));
     }
 
     removeVisit = (visit) => {
