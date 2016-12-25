@@ -1,6 +1,8 @@
 
 import { AsyncStorage } from 'react-native';
 import { observable, toJS } from 'mobx';
+import Moment from 'moment';
+
 import Visit from './visit';
 
 const VISIT_DATA = "VISIT_DATA";
@@ -45,6 +47,10 @@ class DidVisitStore {
         AsyncStorage.getItem(VISIT_DATA).then(data => {
             let visits = JSON.parse(data || "[]");
             visits = visits.map(params => new Visit(params));
+            visits.sort((v1, v2) => {
+                if (!v1.arrivalDate || v2.arrivalDate) { return -1; }
+                return v2.arrivalDate.isAfter(v1.arrivalDate) ? 1 : -1;
+            });
             this.visits.replace(visits);
         });
     }

@@ -28,7 +28,7 @@ class VisitMap extends Component {
             latitude: latlng.latitude,
             longitude: latlng.longitude,
             latitudeDelta: 0.01,
-            longitudeDelta: 0.01
+            longitudeDelta: 0.01,
         })
     }
 
