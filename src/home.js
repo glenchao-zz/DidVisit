@@ -28,7 +28,6 @@ const Vancouver = { latitude: 49.2827, longitude: -123.1207};
 const screen = Dimensions.get("window");
 const styles = StyleSheet.create({
     container: {
-        marginTop: 20,
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
@@ -36,7 +35,6 @@ const styles = StyleSheet.create({
     },
     visitList: {
         flex: 1,
-        marginTop: 10,
     },
     visitMap: {
         flex: 1,
