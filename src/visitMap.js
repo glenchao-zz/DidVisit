@@ -23,7 +23,6 @@ class VisitMap extends Component {
     }
     render() {
         let {
-            position,
             visits,
         } = this.props;
         visits = visits.filter(visit => (visit.latlng && visit.latlng.latitude && visit.latlng.longitude));

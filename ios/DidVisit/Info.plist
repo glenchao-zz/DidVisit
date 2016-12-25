@@ -35,6 +35,10 @@
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>We need to know your location to keep track of where you've been.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
