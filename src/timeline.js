@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { observer } from 'mobx-react/native';
 
-import VisitListItem from './visitListItem';
+import TimelineItem from './timelineItem';
 
 const screen = Dimensions.get("window");
 const styles = StyleSheet.create({
@@ -27,7 +27,7 @@ class Timeline extends Component {
             <ScrollView style={styles.container}>
             {
                 visits.map(visit =>
-                    <VisitListItem key={visit.id}
+                    <TimelineItem key={visit.id}
                                 visit={visit}
                                 onListItemPressed={this.props.onListItemPressed}
                                 onListItemRemove={this.props.onListItemRemove} />)
