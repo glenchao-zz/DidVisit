@@ -27,6 +27,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		AF2CE6D41E0C6308000B7753 /* Geofence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2CE6D21E0C6308000B7753 /* Geofence.swift */; };
 		AF2CE6D51E0C6308000B7753 /* GeofenceBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2CE6D31E0C6308000B7753 /* GeofenceBridge.m */; };
+		AF6333021E139BF700648037 /* CornerPlacerWalkUpNorth.gpx in Resources */ = {isa = PBXBuildFile; fileRef = AF6333011E139BF700648037 /* CornerPlacerWalkUpNorth.gpx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,6 +208,8 @@
 		AF2CE6B01E0C6308000B7753 /* DidVisit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DidVisit-Bridging-Header.h"; sourceTree = "<group>"; };
 		AF2CE6D21E0C6308000B7753 /* Geofence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Geofence.swift; path = DidVisit/Geofence.swift; sourceTree = "<group>"; };
 		AF2CE6D31E0C6308000B7753 /* GeofenceBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeofenceBridge.m; path = DidVisit/GeofenceBridge.m; sourceTree = "<group>"; };
+		AF6333011E139BF700648037 /* CornerPlacerWalkUpNorth.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = CornerPlacerWalkUpNorth.gpx; path = ../../chopchop_app/ios/chopchop_app/CornerPlacerWalkUpNorth.gpx; sourceTree = "<group>"; };
+		AF6333031E13B0E500648037 /* BloorStation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BloorStation.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,6 +394,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				AF6333031E13B0E500648037 /* BloorStation.gpx */,
+				AF6333011E139BF700648037 /* CornerPlacerWalkUpNorth.gpx */,
 				AF2CE6B01E0C6308000B7753 /* DidVisit-Bridging-Header.h */,
 				13B07FAE1A68108700A75B9A /* DidVisit */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -707,6 +712,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				AF6333021E139BF700648037 /* CornerPlacerWalkUpNorth.gpx in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

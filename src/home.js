@@ -51,10 +51,15 @@ class Home extends Component {
     }
     componentDidMount() {
         this.visitListener = GeofenceEvents.addListener("DidVisit", (data) => {
-            data["id"] = generate();
-            data["name"] = "visit";
-            data["latlng"] = { latitude: data.latitude, longitude: data.longitude };
-            Store.add(new Visit(data));
+            try {
+                data["id"] = generate();
+                data["name"] = "visit";
+                data["latlng"] = { latitude: data.latitude, longitude: data.longitude };
+                Store.add(new Visit(data));
+            }
+            catch (error) {
+                alert(JSON.stringify(error));
+            }
         });
     }
 

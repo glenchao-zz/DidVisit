@@ -24,12 +24,14 @@ class VisitMap extends Component {
 
     componentDidUpdate() {
         let latlng = this.props.focusLatlng;
-        this.refs.map.animateToRegion({
-            latitude: latlng.latitude,
-            longitude: latlng.longitude,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01,
-        })
+        if (latlng && latlng.latitude && latlng.longitude) {
+            this.refs.map.animateToRegion({
+                latitude: latlng.latitude,
+                longitude: latlng.longitude,
+                latitudeDelta: 0.01,
+                longitudeDelta: 0.01,
+            });
+        }
     }
 
     render() {

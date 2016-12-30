@@ -14,7 +14,7 @@ class DidVisitStore {
     }
 
     add = (visit) => {
-        this.visits.push(visit);
+        this.visits.unshift(visit);
         this.save();
     }
 
@@ -47,13 +47,15 @@ class DidVisitStore {
         AsyncStorage.getItem(VISIT_DATA).then(data => {
             let visits = JSON.parse(data || "[]");
             visits = visits.map(params => new Visit(params));
-            visits.sort((v1, v2) => {
-                if (!v1.arrivalDate || v2.arrivalDate) { return -1; }
-                return v2.arrivalDate.isAfter(v1.arrivalDate) ? 1 : -1;
-            });
+            visits.sort(byArrivalDate);
             this.visits.replace(visits);
         });
     }
+}
+
+function byArrivalDate(v1, v2) {
+    if (!v1.arrivalDate || !v2.arrivalDate) { return -1; }
+    return v2.arrivalDate.isAfter(v1.arrivalDate) ? 1 : -1;
 }
 
 export default new DidVisitStore();
