@@ -15,7 +15,7 @@ import { generate } from 'shortid';
 
 import Visit from './visit';
 import Store from './store';
-import VisitList from './visitList';
+import Timeline from './timeline';
 import VisitMap from './visitMap';
 
 const GeofenceEvents = new NativeEventEmitter(NativeModules.Geofence);
@@ -74,7 +74,7 @@ class Home extends Component {
                     <VisitMap visits={Store.visits} focusLatlng={this.state.focusLatlng} />
                 </View>
                 <View style={styles.visitList}>
-                    <VisitList visits={Store.visits}
+                    <Timeline visits={Store.visits}
                             onListItemPressed={this.inspectVisit}
                             onListItemRemove={this.removeVisit} />
                 </View>
