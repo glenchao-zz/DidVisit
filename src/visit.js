@@ -33,6 +33,7 @@ export default class Visit {
         // actions
         action(this.update);
         action(this.value);
+        action(this.merge);
     }
 
     update(params = {}) {
@@ -54,6 +55,16 @@ export default class Visit {
 
     value() {
         return toJS(this);
+    }
+
+    merge(visit) {
+        // merges given visit
+        // only fill params that are empty
+        // ignore id and name
+        this.latlng = this.latlng || visit.latlng;
+        this.arrivalDate = this.arrivalDate || visit.arrivalDate;
+        this.departureDate = this.departureDate || visit.departureDate;
+        this.horizontalAccuracy = this.horizontalAccuracy || visit.horizontalAccuracy;
     }
 }
 

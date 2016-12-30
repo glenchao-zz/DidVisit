@@ -14,7 +14,14 @@ class DidVisitStore {
     }
 
     add = (visit) => {
-        this.visits.unshift(visit);
+        // find if there's a visit that has the same arrival date
+        let index = this.visits.findIndex(v => {
+            return visit.arrivalDate.isSame(v.arrivalDate);
+        });
+        // if there's no match, just add to the front
+        if (index === -1) { this.visits.unshift(visit); }
+        // if there's a match, overwrite
+        else { this.visits[index].merge(visit); }
         this.save();
     }
 
